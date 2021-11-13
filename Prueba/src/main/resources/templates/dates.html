@@ -1,0 +1,11 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Spring Boot Thymeleaf Application - Working with dates</title>
+</head>
+<body>
+    <h1>Format dates</h1>
+    <p th:text="${#temporals.format(tstamp, 'dd-MM-yyyy HH:mm')}"></p>
+</body>
+</html>

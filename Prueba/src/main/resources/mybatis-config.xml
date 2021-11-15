@@ -3,5 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-
+	<typeAliases>
+	    <typeAlias alias = "Jugador" type = "com.prueba.aplicacion.domain.entity.Jugador"/>
+		<typeAlias alias = "Partida" type = "com.prueba.aplicacion.domain.entity.Partida"/>
+		<typeAlias alias = "Ranking" type = "com.prueba.aplicacion.vo.RankingVO"/>
+	</typeAliases>
 </configuration>

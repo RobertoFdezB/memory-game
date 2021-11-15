@@ -1,13 +1,29 @@
 package com.prueba.aplicacion.mapper;
- 
+
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
- 
-import com.prueba.aplicacion.model.Jugador;
- 
+
+import com.prueba.aplicacion.domain.entity.Jugador;
+import com.prueba.aplicacion.vo.RankingVO;
+
 @Mapper
 public interface JugadorMapper {
+
+	Jugador findById(long id);
 	
-	Jugador selectJugadorById(long idJugador);
+//	@Select("select * from jugador")
+	List<Jugador> getAll();
+
+	Jugador insert(Jugador entity);
+	
+	Jugador update(Jugador entity);
+
+	void delete(Jugador entity);
+	
+	void deleteById(Long id);
+	
+	void deleteAll();
+
+	List<RankingVO> obtenerRanking();
 }

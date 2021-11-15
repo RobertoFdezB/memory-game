@@ -3,7 +3,39 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prueba.aplicacion.mapper.PartidaMapper">
-    <select id="selectPartidaById" resultType="com.prueba.aplicacion.model.Partida">
-        select * from partida where id = #{idPartida}
+
+    <select id="findById" resultType="Partida">
+        select * from partida where id = #{id}
     </select>
+
+    <select id="getAll" resultType="Partida">
+        select * from partida
+    </select>
+	
+	<insert id="insert">
+	  insert into partida (fecha,movimientos,tiempo,jugador_id)
+	  values (#{entity.fecha},#{entity.movimientos},#{entity.tiempo},#{entity.jugador.id})
+	</insert>
+
+	<update id="update">
+	  update partida set
+	    fecha = #{entity.fecha},
+	    movimientos = #{entity.movimientos},
+		tiempo = #{entity.tiempo},
+		jugador_id = #{entity.jugador.id},
+	  where id = #{entity.id}
+	</update>
+
+	<delete id="delete">
+	  delete from partida where id = #{entity.id}
+	</delete>
+
+	<delete id="deleteById">
+	  delete from partida where id = #{id}
+	</delete>
+
+	<delete id="deleteAll">
+	  delete from partida
+	</delete>
+	
 </mapper>

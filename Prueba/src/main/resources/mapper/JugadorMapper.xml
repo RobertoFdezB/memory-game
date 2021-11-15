@@ -2,8 +2,48 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.prueba.aplicacion.mapper.JugadorMapper">
-    <select id="selectJugadorById" resultType="com.prueba.aplicacion.model.Jugador">
-        select * from jugador where id = #{idJugador}
+
+    <select id="findById" resultType="Jugador">
+        select * from jugador where id = #{id}
     </select>
+
+    <select id="getAll" resultType="Jugador">
+        select * from jugador
+    </select>
+	
+	<insert id="insert">
+	  insert into jugador (nombre,equipo)
+	  values (#{entity.nombre},#{entity.equipo})
+	</insert>
+
+	<update id="update">
+	  update jugador set
+	    nombre = #{nombre},
+	    equipo = #{equipo},
+	  where id = #{id}
+	</update>
+
+	<delete id="delete">
+	  delete from jugador where id = #{entity.id}
+	</delete>
+
+	<delete id="deleteById">
+	  delete from jugador where id = #{id}
+	</delete>
+
+	<delete id="deleteAll">
+	  delete from jugador
+	</delete>
+	
+	<select id="obtenerRanking" resultType="Ranking">
+		select top 10 jugador.nombre as nombre, jugador.equipo as equipo, partida.movimientos as movimientos, partida.tiempo as tiempo
+		from jugador
+		inner join partida
+		where partida.jugador_id = jugador.id
+		order by partida.movimientos, partida.tiempo
+    </select>
+	
 </mapper>
+

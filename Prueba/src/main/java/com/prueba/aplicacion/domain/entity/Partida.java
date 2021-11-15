@@ -1,10 +1,15 @@
-package com.prueba.aplicacion.model;
+package com.prueba.aplicacion.domain.entity;
 
-import java.io.Serializable;
-import java.time.Duration;
+import java.time.LocalTime;
 import java.util.Date;
 
-public class Partida implements Serializable {
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import com.prueba.aplicacion.domain.DomainEntity;
+
+public class Partida implements DomainEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -14,11 +19,13 @@ public class Partida implements Serializable {
 
 	private Integer movimientos;
 
-	private Duration tiempo;
-
+	private LocalTime tiempo;
+	
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity=Jugador.class)
+	@JoinColumn(name="jugador_id")
 	private Jugador jugador;
 
-	public Partida(Date fecha, Integer movimientos, Duration tiempo, Jugador jugador) {
+	public Partida(Date fecha, Integer movimientos, LocalTime tiempo, Jugador jugador) {
 		super();
 		this.fecha = fecha;
 		this.movimientos = movimientos;
@@ -71,14 +78,14 @@ public class Partida implements Serializable {
 	/**
 	 * @return the tiempo
 	 */
-	public Duration getTiempo() {
+	public LocalTime getTiempo() {
 		return tiempo;
 	}
 
 	/**
 	 * @param tiempo the tiempo to set
 	 */
-	public void setTiempo(Duration tiempo) {
+	public void setTiempo(LocalTime tiempo) {
 		this.tiempo = tiempo;
 	}
 

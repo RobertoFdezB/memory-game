@@ -1,9 +1,14 @@
-package com.prueba.aplicacion.model;
+package com.prueba.aplicacion.domain.entity;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class Jugador implements Serializable {
+import javax.persistence.CascadeType;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
+import com.prueba.aplicacion.domain.DomainEntity;
+
+public class Jugador implements DomainEntity<Long> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -13,6 +18,7 @@ public class Jugador implements Serializable {
 
 	private String equipo;
 
+	@OneToMany(targetEntity=Partida.class, mappedBy = "jugador", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	private List<Partida> partidas;
 
 	public Jugador(String nombre, String equipo) {

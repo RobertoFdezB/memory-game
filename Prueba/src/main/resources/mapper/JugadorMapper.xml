@@ -5,31 +5,82 @@
 
 <mapper namespace="com.prueba.aplicacion.mapper.JugadorMapper">
 
+    <sql id="Base_Column_List" >
+        id, nombre, equipo
+    </sql>
+
+	<resultMap type="com.prueba.aplicacion.domain.entity.Partida" id="partidaResult">
+        <id column="id" property="id" javaType="long" />
+        <result column="fecha" property="fecha" javaType="java.sql.Date" />
+        <result column="movimientos" property="movimientos" javaType="int" />
+        <result column="tiempo" property="tiempo" javaType="java.sql.Time"/>
+		<result column="jugador_id" property="jugador_id" javaType="long"/>
+	</resultMap>
+	
+	<resultMap type="com.prueba.aplicacion.domain.entity.Jugador" id="jugadorResult">
+		<id column="id" property="id" javaType="long"/>
+	    <result column="nombre" property="nombre" javaType="string"/>
+	    <result column="equipo" property="equipo" javaType="string"/>
+	</resultMap>
+	
+	<resultMap type="com.prueba.aplicacion.domain.entity.Partida" id="partidaResultConJugador">
+		<id column="id" property="id" javaType="long"/>
+        <result column="fecha" property="fecha" javaType="java.sql.Date" />
+        <result column="movimientos" property="movimientos" javaType="int" />
+        <result column="tiempo" property="tiempo" javaType="java.sql.Time"/>
+	    <association property="jugador" column="jugador_id" 
+	    resultMap="jugadorResult"/>
+	</resultMap>
+	
+	<resultMap type="com.prueba.aplicacion.domain.entity.Jugador" id="jugadorResultConPartidas">
+		<id column="id" property="id" javaType="long"/>
+	    <result column="nombre" property="nombre" javaType="string"/>
+	    <result column="equipo" property="equipo" javaType="string"/>
+	    <collection property="partidas" javaType="ArrayList" ofType="com.prueba.aplicacion.domain.entity.Partida"
+	    column="id" resultMap="partidaResult"/>
+	</resultMap>
+
+
     <select id="findById" resultType="Jugador">
-        select * from jugador where id = #{id}
+        select 
+		<include refid="Base_Column_List" />
+		from jugador where id = #{id}
     </select>
+
+	<select id="findByIdConPartidas" parameterType="long" resultMap="jugadorResultConPartidas">
+		select
+		<include refid="Base_Column_List" />
+		from jugador
+		inner join partida on jugador.id = partida.jugador_id 
+		where partida.jugador_id = #{id}
+	</select>
 
     <select id="getAll" resultType="Jugador">
-        select * from jugador
+        select
+		<include refid="Base_Column_List" />
+		from jugador
     </select>
 	
-	<insert id="insert">
+	<insert id="insert" parameterType="com.prueba.aplicacion.domain.entity.Jugador">
 	  insert into jugador (nombre,equipo)
-	  values (#{entity.nombre},#{entity.equipo})
+	  values (#{nombre},#{equipo})
 	</insert>
 
-	<update id="update">
-	  update jugador set
-	    nombre = #{nombre},
-	    equipo = #{equipo},
-	  where id = #{id}
+	<update id="update" parameterType="com.prueba.aplicacion.domain.entity.Jugador">
+ 		update 
+            jugador 
+       set 
+        <if test="nombre != null">nombre = #{nombre},</if>
+        <if test="equipo != null">equipo = #{equipo},</if>
+       where 
+            id = #{id}
 	</update>
 
-	<delete id="delete">
-	  delete from jugador where id = #{entity.id}
+	<delete id="delete" parameterType="com.prueba.aplicacion.domain.entity.Jugador">
+	  delete from jugador where id = #{id}
 	</delete>
 
-	<delete id="deleteById">
+	<delete id="deleteById" parameterType="java.lang.Long">
 	  delete from jugador where id = #{id}
 	</delete>
 

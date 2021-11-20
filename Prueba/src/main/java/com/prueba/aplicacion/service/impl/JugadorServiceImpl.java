@@ -22,6 +22,7 @@ public class JugadorServiceImpl implements JugadorService {
 	@Override
 	public Jugador findById(Long id) {
 		return jugadorMapper.findById(id);
+		
 	}
 
 	@Override

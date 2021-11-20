@@ -1,6 +1,6 @@
 package com.prueba.aplicacion.vo;
 
-import java.time.LocalTime;
+import java.sql.Time;
 
 public class RankingVO {
 
@@ -10,7 +10,7 @@ public class RankingVO {
 
 	private Integer movimientos;
 
-	private LocalTime tiempo;
+	private Time tiempo;
 
 	/**
 	 * @return the nombre
@@ -57,14 +57,14 @@ public class RankingVO {
 	/**
 	 * @return the tiempo
 	 */
-	public LocalTime getTiempo() {
+	public Time getTiempo() {
 		return tiempo;
 	}
 
 	/**
 	 * @param tiempo the tiempo to set
 	 */
-	public void setTiempo(LocalTime tiempo) {
+	public void setTiempo(Time tiempo) {
 		this.tiempo = tiempo;
 	}
 

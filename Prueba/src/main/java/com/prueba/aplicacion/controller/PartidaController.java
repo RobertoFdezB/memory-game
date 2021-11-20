@@ -53,7 +53,7 @@ public class PartidaController {
 	@PostMapping("/createPartida")
 	public ResponseEntity<Partida> createPartida(@RequestBody Partida partida) {
 		try {
-			Partida partidaCreate = partidaService.insert(new Partida(partida.getFecha(), partida.getMovimientos(), partida.getTiempo(), partida.getJugador()));
+			Partida partidaCreate = partidaService.insert(new Partida(partida.getFecha(),partida.getMovimientos(), partida.getTiempo()));
 			return new ResponseEntity<>(partidaCreate, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);

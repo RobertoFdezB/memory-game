@@ -4,33 +4,84 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.prueba.aplicacion.mapper.PartidaMapper">
 
-    <select id="findById" resultType="Partida">
-        select * from partida where id = #{id}
+    <sql id="Base_Column_List" >
+        id, fecha, movimientos, tiempo
+    </sql>
+
+	<resultMap type="com.prueba.aplicacion.domain.entity.Partida" id="partidaResult">
+        <id column="id" property="id" javaType="long" />
+        <result column="fecha" property="fecha" javaType="java.sql.Date" />
+        <result column="movimientos" property="movimientos" javaType="int" />
+        <result column="tiempo" property="tiempo" javaType="java.sql.Time"/>
+		<result column="jugador_id" property="jugador_id" javaType="long"/>
+	</resultMap>
+	
+	<resultMap type="com.prueba.aplicacion.domain.entity.Jugador" id="jugadorResult">
+		<id column="id" property="id" javaType="long"/>
+	    <result column="nombre" property="nombre" javaType="string"/>
+	    <result column="equipo" property="equipo" javaType="string"/>
+	</resultMap>
+	
+	<resultMap type="com.prueba.aplicacion.domain.entity.Partida" id="partidaResultConJugador">
+		<id column="id" property="id" javaType="long"/>
+        <result column="fecha" property="fecha" javaType="java.sql.Date" />
+        <result column="movimientos" property="movimientos" javaType="int" />
+        <result column="tiempo" property="tiempo" javaType="java.sql.Time"/>
+	    <association property="jugador" column="jugador_id" 
+	    resultMap="jugadorResult"/>
+	</resultMap>
+	
+	<resultMap type="com.prueba.aplicacion.domain.entity.Jugador" id="jugadorResultConPartidas">
+		<id column="id" property="id" javaType="long"/>
+	    <result column="nombre" property="nombre" javaType="string"/>
+	    <result column="equipo" property="equipo" javaType="string"/>
+	    <collection property="partidas" javaType="ArrayList" ofType="com.prueba.aplicacion.domain.entity.Partida"
+	    column="id" resultMap="partidaResult"/>
+	</resultMap>
+
+    <select id="findById" parameterType="java.lang.Long" resultMap="partidaResult">
+       select 
+       <include refid="Base_Column_List" />
+       from partida
+       where id = #{id}
     </select>
 
-    <select id="getAll" resultType="Partida">
-        select * from partida
+	<select id="findByIdConJugador" parameterType="long" resultMap="partidaResultConJugador">
+		select
+		<include refid="Base_Column_List" />
+		from partida
+		inner join jugador ON partida.jugador_id = jugador.id
+		where partida.id = #{id}
+	</select>
+
+    <select id="getAll" resultMap="partidaResult"  >
+       select 
+       <include refid="Base_Column_List" />
+       from partida
     </select>
 	
-	<insert id="insert">
+	<insert id="insert" parameterType="com.prueba.aplicacion.domain.entity.Partida">
 	  insert into partida (fecha,movimientos,tiempo,jugador_id)
-	  values (#{entity.fecha},#{entity.movimientos},#{entity.tiempo},#{entity.jugador.id})
+	  values (#{fecha},#{movimientos},#{tiempo},#{jugador_id})
 	</insert>
 
-	<update id="update">
-	  update partida set
-	    fecha = #{entity.fecha},
-	    movimientos = #{entity.movimientos},
-		tiempo = #{entity.tiempo},
-		jugador_id = #{entity.jugador.id},
-	  where id = #{entity.id}
+	<update id="update" parameterType="com.prueba.aplicacion.domain.entity.Partida">
+ 		update 
+            partida 
+       set 
+        <if test="fecha != null">fecha = #{fecha},</if>
+        <if test="movimientos != null">movimientos = #{movimientos},</if>
+		<if test="tiempo != null">tiempo = #{tiempo},</if>
+		<if test="jugador != null">jugador = #{jugador}</if>
+       where 
+            id = #{id}
 	</update>
 
-	<delete id="delete">
-	  delete from partida where id = #{entity.id}
+	<delete id="delete" parameterType="com.prueba.aplicacion.domain.entity.Partida">
+	  delete from partida where id = #{id}
 	</delete>
 
-	<delete id="deleteById">
+	<delete id="deleteById" parameterType="java.lang.Long">
 	  delete from partida where id = #{id}
 	</delete>
 

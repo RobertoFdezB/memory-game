@@ -1,7 +1,7 @@
 package com.prueba.aplicacion.domain.entity;
 
-import java.time.LocalTime;
-import java.util.Date;
+import java.sql.Date;
+import java.sql.Time;
 
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -19,18 +19,17 @@ public class Partida implements DomainEntity<Long> {
 
 	private Integer movimientos;
 
-	private LocalTime tiempo;
+	private Time tiempo;
 	
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity=Jugador.class)
 	@JoinColumn(name="jugador_id")
 	private Jugador jugador;
 
-	public Partida(Date fecha, Integer movimientos, LocalTime tiempo, Jugador jugador) {
+	public Partida(Date fecha, Integer movimientos, Time tiempo) {
 		super();
-		this.fecha = fecha;
 		this.movimientos = movimientos;
+		this.fecha = fecha;
 		this.tiempo = tiempo;
-		this.jugador = jugador;
 	}
 
 	/**
@@ -78,14 +77,14 @@ public class Partida implements DomainEntity<Long> {
 	/**
 	 * @return the tiempo
 	 */
-	public LocalTime getTiempo() {
+	public Time getTiempo() {
 		return tiempo;
 	}
 
 	/**
 	 * @param tiempo the tiempo to set
 	 */
-	public void setTiempo(LocalTime tiempo) {
+	public void setTiempo(Time tiempo) {
 		this.tiempo = tiempo;
 	}
 

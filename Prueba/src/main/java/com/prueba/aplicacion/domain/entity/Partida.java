@@ -15,8 +15,6 @@ public class Partida implements DomainEntity<Long> {
 
 	private Long id;
 
-	private Date fecha;
-
 	private Integer movimientos;
 
 	private Time tiempo;
@@ -25,10 +23,9 @@ public class Partida implements DomainEntity<Long> {
 	@JoinColumn(name="jugador_id")
 	private Jugador jugador;
 
-	public Partida(Date fecha, Integer movimientos, Time tiempo) {
+	public Partida(Integer movimientos, Time tiempo) {
 		super();
 		this.movimientos = movimientos;
-		this.fecha = fecha;
 		this.tiempo = tiempo;
 	}
 
@@ -44,20 +41,6 @@ public class Partida implements DomainEntity<Long> {
 	 */
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	/**
-	 * @return the fecha
-	 */
-	public Date getFecha() {
-		return fecha;
-	}
-
-	/**
-	 * @param fecha the fecha to set
-	 */
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
 	}
 
 	/**

@@ -21,26 +21,26 @@ values(10,'Patricia','Blanco');
 
 
 insert into partida
-values(1,'2021-12-31',5,'00:08:12.123',1);
+values(1,5,'00:08:12.123',1);
 insert into partida
-values(2,'2021-12-31',7,'00:06:12.123',10);
+values(2,7,'00:06:12.123',10);
 insert into partida
-values(3,'2021-12-31',3,'00:03:13.123',8);
+values(3,3,'00:03:13.123',8);
 insert into partida
-values(4,'2021-12-31',4,'00:03:12.123',7);
+values(4,4,'00:03:12.123',7);
 insert into partida
-values(5,'2021-12-31',10,'00:10:12.123',2);
+values(5,10,'00:10:12.123',2);
 insert into partida
-values(6,'2021-12-31',15,'00:09:12.123',4);
+values(6,15,'00:09:12.123',4);
 insert into partida
-values(7,'2021-12-31',13,'00:07:12.123',5);
+values(7,13,'00:07:12.123',5);
 insert into partida
-values(8,'2021-12-31',4,'00:05:12.123',3);
+values(8,4,'00:05:12.123',3);
 insert into partida
-values(9,'2021-12-31',5,'00:07:12.123',9);
+values(9,5,'00:07:12.123',9);
 insert into partida
-values(10,'2021-12-31',6,'00:12:12.123',6);
+values(10,6,'00:12:12.123',6);
 insert into partida
-values(11,'2021-12-31',9,'00:09:12.123',1);
+values(11,9,'00:09:12.123',1);
 insert into partida
-values(12,'2021-12-31',10,'00:10:12.123',10);
+values(12,10,'00:10:12.123',10);

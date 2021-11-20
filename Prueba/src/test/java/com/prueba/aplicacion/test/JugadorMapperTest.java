@@ -6,6 +6,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -13,8 +14,10 @@ import com.prueba.aplicacion.domain.entity.Jugador;
 import com.prueba.aplicacion.mapper.JugadorMapper;
 import com.prueba.aplicacion.vo.RankingVO;
 
+
 @RunWith(SpringRunner.class)
-@SpringBootTest
+@SpringBootTest(properties = { "spring.jpa.database-platform=org.hibernate.dialect.H2Dialect" })
+@AutoConfigureTestDatabase
 class JugadorMapperTest {
 	
     @Autowired

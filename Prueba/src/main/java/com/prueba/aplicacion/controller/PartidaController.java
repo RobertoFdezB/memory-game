@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.prueba.aplicacion.domain.entity.Partida;
 import com.prueba.aplicacion.service.PartidaService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api")
 public class PartidaController {
 
@@ -53,7 +55,7 @@ public class PartidaController {
 	@PostMapping("/createPartida")
 	public ResponseEntity<Partida> createPartida(@RequestBody Partida partida) {
 		try {
-			Partida partidaCreate = partidaService.insert(new Partida(partida.getFecha(),partida.getMovimientos(), partida.getTiempo()));
+			Partida partidaCreate = partidaService.insert(new Partida(partida.getMovimientos(), partida.getTiempo()));
 			return new ResponseEntity<>(partidaCreate, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -66,7 +68,6 @@ public class PartidaController {
 
 		if (partidaData != null) {
 			Partida partidaUpdate = partidaData;
-			partidaUpdate.setFecha(partida.getFecha());
 			partidaUpdate.setMovimientos(partida.getMovimientos());
 			partidaUpdate.setTiempo(partida.getTiempo());
 			partidaUpdate.setJugador(partida.getJugador());

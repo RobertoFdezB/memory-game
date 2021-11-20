@@ -11,7 +11,6 @@
 
 	<resultMap type="com.prueba.aplicacion.domain.entity.Partida" id="partidaResult">
         <id column="id" property="id" javaType="long" />
-        <result column="fecha" property="fecha" javaType="java.sql.Date" />
         <result column="movimientos" property="movimientos" javaType="int" />
         <result column="tiempo" property="tiempo" javaType="java.sql.Time"/>
 		<result column="jugador_id" property="jugador_id" javaType="long"/>
@@ -25,7 +24,6 @@
 	
 	<resultMap type="com.prueba.aplicacion.domain.entity.Partida" id="partidaResultConJugador">
 		<id column="id" property="id" javaType="long"/>
-        <result column="fecha" property="fecha" javaType="java.sql.Date" />
         <result column="movimientos" property="movimientos" javaType="int" />
         <result column="tiempo" property="tiempo" javaType="java.sql.Time"/>
 	    <association property="jugador" column="jugador_id" 

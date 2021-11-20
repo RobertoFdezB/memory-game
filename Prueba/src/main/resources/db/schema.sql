@@ -10,7 +10,6 @@ DROP TABLE IF EXISTS partida;
 create table partida
 (
 	id IDENTITY NOT NULL PRIMARY KEY,
-	fecha DATE NOT NULL,
 	movimientos INT NOT NULL,
 	tiempo TIME NOT NULL,
 	jugador_id INT8

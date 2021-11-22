@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Mi primer Login</title>
-
+    <title>El juego de las parejas</title>
+    <base href="/">
+    
     <!--JQUERY-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
@@ -19,12 +20,21 @@
 
 </head>
 <body>
-    <div class="modal-dialog text-center">
-        <div class="col-sm-8 main-section">
-            <div class="modal-content">
-            Hola Mundo
-            </div>
-        </div>
+    <div class="box">
+        <h1 class="titulo centrado">El juego de las parejas</h1>
     </div>
+    <form action="/juego">
+    <div class="box">
+        <label class="boxtwo">Nombre</label>
+        <label class="boxtwo">Equipo</label>
+    </div>
+    <div class="box">
+    	<input type="text" id="nombre" name="nombre" required maxlength="8" size="10" class="boxtwo">
+    	<input type="text" id="equipo" name="equipo" required maxlength="8" size="10" class="boxtwo">
+    </div>
+   	<div class="box">	
+    	<input type="submit" class="btn btn-success navbar-btn size-btn centrado" value="Iniciar partida"></input>
+    </div>
+    </form>
 </body>
 </html>

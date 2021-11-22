@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<!--JQUERY-->
+    <title>El juego de las parejas</title>
+    <base href="/">
+    
+    <!--JQUERY-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     
     <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
@@ -14,29 +17,28 @@
 
     <!-- Nuestro css-->
     <link rel="stylesheet" type="text/css" href="static/css/index.css" th:href="@{/css/index.css}">
-	
-	<style type="text/css">
-		body{
-			padding-top:5%;
-		}
-	
-		img{
-			width:100%;
-		}
-		
-	</style>
+
 </head>
 <body>
-	<div class="container text-center">
-		<div class="mx-auto col-10 card">
-			<div class="card-header">
-				<h4 th:text="${error}">Internal Server Error</h4>
-			</div>		
-			<div class="card-body">
-				<img src="static/img/error/404.png" th:src="@{/img/error/404.png}"/>
-			</div>
-		</div>
-	</div>
-
+    <div class="box">
+        <h1 class="titulo centrado">Ranking</h1>
+    </div>
+    <div class="box">
+        <label class="boxtwo">Posici&oacute;n</label>
+        <label class="boxtwo">Tiempo</label>
+        <label class="boxtwo">Movimientos</label>
+        <label class="boxtwo">Nombre</label>
+        <label class="boxtwo">Equipo</label>
+    </div>
+    <form action="/juego">
+   	<div class="box">	
+    	<input type="submit" class="btn btn-primary navbar-btn size-btn centrado" value="Volver a jugar"></input>
+    </div>
+    </form>
+    <form action="/">
+   	<div class="box">
+    	<input type="submit" class="btn btn-danger navbar-btn size-btn centrado" value="Salir"></input>
+    </div>
+    </form>
 </body>
 </html>

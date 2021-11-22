@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>El juego de las parejas</title>
+
+    <!--JQUERY-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+    <!-- FRAMEWORK BOOTSTRAP para el estilo de la pagina-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="static/css/index.css" th:href="@{/css/index.css}">
+    
+	<script src="/js/juego.js"></script>
+
+</head>
+<body>
+	<div class="box">
+	    <label class="boxtwo">Movimientos</label>
+	    <label class="boxtwo" id="movimientos">0</label>
+	  </div>
+	<div class="box">
+	    <label class="boxtwo">Tiempo</label>
+	    <div class="boxtwo" id="reloj"></div>
+	</div>
+    <div id="juego"class="wrapper centrado">
+      <table>
+        <tr>
+          <td id="0" class="letra uno" onclick="girarCarta()" data-valor="valor">?</td>
+          <td id="1" class="letra dos" onclick="girarCarta()" data-valor="valor">?</td>
+          <td id="2" class="letra tres" onclick="girarCarta()" data-valor="valor">?</td>
+          <td id="3" class="letra cuatro" onclick="girarCarta()" data-valor="valor">?</td>
+        </tr>
+        <tr>
+          <td id="4" class="letra cinco" onclick="girarCarta()" data-valor="valor">?</td>
+          <td id="5" class="letra seis" onclick="girarCarta()" data-valor="valor">?</td>
+          <td id="6" class="letra siete" onclick="girarCarta()" data-valor="valor">?</td>
+          <td id="7" class="letra ocho" onclick="girarCarta()" data-valor="valor">?</td>
+        </tr>
+        <tr>
+          <td id="8" class="letra nueve" onclick="girarCarta()" data-valor="valor">?</td>
+          <td id="9" class="letra diez" onclick="girarCarta()" data-valor="valor">?</td>
+          <td id="10" class="letra once" onclick="girarCarta()" data-valor="valor">?</td>
+          <td id="11" class="letra doce" onclick="girarCarta()" data-valor="valor">?</td>
+        </tr>
+        <tr>
+          <td id="12" class="letra trece" onclick="girarCarta()" data-valor="valor">?</td>
+          <td id="13" class="letra catorce" onclick="girarCarta()" data-valor="valor">?</td>
+          <td id="14" class="letra quince" onclick="girarCarta()" data-valor="valor">?</td>
+          <td id="15" class="letra dieciseis" onclick="girarCarta()" data-valor="valor">?</td>
+        </tr>
+        </table>
+      </div>
+	<form id="ranking" action="/ranking">
+	   	<div class="box">	
+	    	<input type="submit" class="hidden" value="Ranking"></input>
+	    </div>
+	 </form>
+</body>
+</html>
